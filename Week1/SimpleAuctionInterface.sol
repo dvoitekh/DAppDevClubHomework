@@ -12,7 +12,7 @@ interface AuctionInterface {
      * @param   _price Amount (in Wei) needed to buy the lot immediately
      * @param   _minBid Amount (in Wei) needed to place a bid.
      */
-    function createLot(string _name, uint _price, uint _minBid);
+    function createLot(string _name, uint _price, uint _minBid) external returns (uint);
 
     /**
      * @notice  Removes lot, which has no bids.
@@ -25,7 +25,7 @@ interface AuctionInterface {
      *          bidder
      * @param  _lotID Integer identifier associated with target lot
      */
-    function bid(uint _lotID) payable;
+    function bid(uint _lotID) external payable returns (uint);
 
     /**
      * @notice  Resolves the lot status if it's time is passed. Anyone should
@@ -72,13 +72,13 @@ interface AuctionInterface {
      * @param   _lotID Integer identifier associated with target lot
      * @param   _option Boolean value which indicates the option (false - downrate, true - uprate)
      */
-    function rate(uint _lotID, bool _option);
+    function rate(uint _lotID, bool _option) external;
 
     /**
      * @notice  Shows the rating for the provided user address.
      * @param   _owner User address.
      * @return  Amount of rating.
      */
-    function getRating(address _owner) constant returns (uint);
+    function getRating(address _owner) external returns (uint);
 
 }
